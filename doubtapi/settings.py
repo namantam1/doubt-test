@@ -76,13 +76,7 @@ WSGI_APPLICATION = 'doubtapi.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
 if os.environ['REMOTE_DB']=='True':
-    DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.sqlite3',
-            'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-        }
-    }
-else:
+    print('remote db')
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.postgresql',
@@ -91,6 +85,14 @@ else:
             'USER': 'wavmeczglrlgvw',
             'PASSWORD': '5c1648eb9622730407386f23ae3907a8977fba3e1ae8c52f28d2cd2b1e24fa6a',
             'PORT':'5432'
+        }
+    }
+else:
+    print('local db')
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
         }
     }
 
