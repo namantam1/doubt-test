@@ -80,10 +80,10 @@ if os.environ['REMOTE_DB']=='True':
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.postgresql',
-            'NAME': 'dchcjjsnee4jg3',
-            'HOST': 'ec2-54-234-44-238.compute-1.amazonaws.com',
-            'USER': 'wavmeczglrlgvw',
-            'PASSWORD': '5c1648eb9622730407386f23ae3907a8977fba3e1ae8c52f28d2cd2b1e24fa6a',
+            'NAME': 'petdybyq',
+            'HOST': 'ruby.db.elephantsql.com',
+            'USER': 'petdybyq',
+            'PASSWORD': os.environ.get('DB_PASSWORD'),
             'PORT':'5432'
         }
     }
