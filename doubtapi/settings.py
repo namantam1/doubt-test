@@ -20,10 +20,10 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/3.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'pri+x(i9u^k23+&cr*v)65o0(dgv26_grkyv+(9#4azq^3v-h)'
+SECRET_KEY = os.environ['SECRET_KEY']
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = (os.environ['DEBUG']=='True')
 
 ALLOWED_HOSTS = ['doubt-test.herokuapp.com']
 
@@ -75,13 +75,24 @@ WSGI_APPLICATION = 'doubtapi.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/3.0/ref/settings/#databases
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+if os.environ['REMOTE_DB']=='True':
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.sqlite3',
+            'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        }
     }
-}
+else:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql',
+            'NAME': 'dchcjjsnee4jg3',
+            'HOST': 'ec2-54-234-44-238.compute-1.amazonaws.com',
+            'USER': 'wavmeczglrlgvw',
+            'PASSWORD': '5c1648eb9622730407386f23ae3907a8977fba3e1ae8c52f28d2cd2b1e24fa6a',
+            'PORT':'5432'
+        }
+    }
 
 
 # Password validation
