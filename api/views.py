@@ -56,7 +56,7 @@ def question_date(request,date):
         return Response({'status':'no search results found'})
 
 @api_view(['GET'])
-def student_help(request):
+def teacher_help(request):
     data = {
         'filter all question': {
             'url': '/',
@@ -81,7 +81,7 @@ def student_help(request):
     return Response(data)
 
 @api_view(['GET'])
-def teacher_help(request):
+def student_help(request):
     data = {
         'url': "/",
         'method':'post',
